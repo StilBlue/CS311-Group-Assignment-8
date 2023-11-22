@@ -39,18 +39,44 @@ void readFiles() {
         do{
             //Initializing integers with negative value for error detection,(program uses all positive integers).
             int cityNumID = -1; //Initializing number associated with the city.
-            string cityCode; //Initializing abbreviation associated with the city.
+            string cityCode; //Initializing abbreviation code associated with the city.
             string cityName; //Initializing the name of the city.
             int cityPop = -1; //Initializing the population of the city.
             int cityElev = -1; //Initializing the elevation of the city.
 
             cityFile >> cityNumID >> cityCode >> cityName >> cityPop >> cityElev; //Read from city.txt and store file data accordingingly.
             
-            //This line is for test purposes only to make sure. Will edit out later. Lets me know if properly reading from file.
+            //This line of code prints each line being read from file. TEST PURPOSES ONLY.
+            //(It works!)
             cout << "\nCity Number ID: " << cityNumID << ", City Code: " << cityCode << ", City Name: " << cityName << ", City Population: " << cityPop << ", City Elevation: " << cityElev << endl;            
         }while(getline(cityFile, line));
 
         cityFile.close(); //Close cityFile
+    }
+    else {
+        cout << "Error opening/closing file." << endl; //Error catcher in event can't open or close file properly.
+    }
+
+    if(!roadFile.is_open()) { //If the road file is not open...
+        roadFile.open("road.txt", ios::in); //Open the road file.
+        
+        //Get a line from the road file.
+        //Process data from line.
+        //Repeat until end of file.
+        do{
+            //Initializing integers with negative value for error detection,(program uses all positive integers).
+            int fromCity = -1;
+            int toCity = -1;
+            int cityDistance = -1;
+
+            roadFile >> fromCity >> toCity >> cityDistance; //Read from road.txt and store file data accordingingly.
+            
+            //This line of code prints each line being read from file. TEST PURPOSES ONLY.
+            //(It works!)
+            cout << "\nFrom City ID: " << fromCity << ", To City ID: " << toCity << ", City Distance: " << cityDistance << endl;            
+        }while(getline(roadFile, line));
+
+        roadFile.close(); //Close roadFile
     }
     else {
         cout << "Error opening/closing file." << endl; //Error catcher in event can't open or close file properly.

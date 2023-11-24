@@ -13,7 +13,6 @@
 
 using namespace std;
 
-bool checkForCity(string code, CityInfo info);
 void printGroupInfo();
 
 int main(int argc, char** argv) {

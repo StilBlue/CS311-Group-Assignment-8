@@ -1,33 +1,12 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "CityInfo.h"
+#include <vector>
+#include <limits.h>
+#include "graph.h"
 
 using namespace std;
 
-class CityMap
-{
-public:
-    int weight[20][20];
-    vector<CityInfo> cityList;
-    
-    //Construct the city info and road map by reading city.txt and road.txt file
-    CityMap();
-    
-    //Print informations of a city
-    void PrintCityInfo(string cityCode);
-
-    //Using Dijkstra Algorithm to find the shortest route
-    void FindShortestRoute(string a, string b);
-    int FindClosestUnprocessedVertex(int distance[], bool visited[]);
-    bool VisitedAll(bool list[]);
-    
-    //Return city number from city code
-    int CityNumber(string cityCode);
-
-    //Check if the city exist in data
-    bool CityExist(string city);
-};
 
 CityMap::CityMap()
 {
@@ -55,10 +34,12 @@ CityMap::CityMap()
 
     cityFile.close(); //Close cityFile
 
+    totalCity = static_cast<int>(cityList.size());
+
     //Assign -1 to every vertex in weight
-    for (int i = 0; i < cityList.size(); i++)
+    for (int i = 0; i < totalCity; i++)
     {
-        for (int j = 0; j < cityList.size(); j++)
+        for (int j = 0; j < totalCity; j++)
         {
             weight[i][j] = -1;
         }
@@ -93,7 +74,7 @@ CityMap::CityMap()
 int CityMap::CityNumber(string cityCode)
 {
     //If the cityCode match a CityInfo in cityList, return city name of that CityInfo
-    for (int i = 0; i < cityList.size(); i++)
+    for (int i = 0; i < totalCity; i++)
     {
         if (cityList[i].code == cityCode)
             return cityList[i].numID;
@@ -114,7 +95,7 @@ void CityMap::FindShortestRoute(string a, string b)
     //Initialize all value of visited[] to false
     //Initialize all value of distance[] to largest integer possible
     //Initialize all value of path[] to empty string
-    for (int i = 0; i < cityList.size(); i++)
+    for (int i = 0; i < totalCity; i++)
     {
         visited[i] = false;
         distance[i] = INT_MAX;
@@ -131,7 +112,7 @@ void CityMap::FindShortestRoute(string a, string b)
         //Mark u as visited vertex
         visited[u] = true;
 
-        for (int v = 0; v < cityList.size(); v++)
+        for (int v = 0; v < totalCity; v++)
         {
             //If v vertex is not marked as visited
             //and having an edge connecting from u to v
@@ -148,7 +129,7 @@ void CityMap::FindShortestRoute(string a, string b)
     }
 
     //Error message if city distance is less than 0
-    if (distance[cityB] < 0)
+    if (distance[cityB] == INT_MAX)
     {
         cout << "No route from " << cityList[cityA].name << " to " << cityList[cityB].name << endl;
     }
@@ -165,7 +146,7 @@ void CityMap::FindShortestRoute(string a, string b)
 bool CityMap::VisitedAll(bool list[])
 {
     //Return false if detect a false inside list[]
-    for (int i = 0; i < cityList.size(); i++)
+    for (int i = 0; i < totalCity; i++)
     {
         if (!list[i])
             return false;
@@ -179,7 +160,7 @@ int CityMap::FindClosestUnprocessedVertex(int distance[], bool visited[])
     int minDist = INT_MAX;
     int closest = -1;
     
-    for (int i = 0; i < cityList.size(); i++)
+    for (int i = 0; i < totalCity; i++)
     {
         //Assign the city number with the smallest value in distance[] to closest
         if (distance[i] <= minDist && !visited[i])
@@ -193,7 +174,7 @@ int CityMap::FindClosestUnprocessedVertex(int distance[], bool visited[])
 
 bool CityMap::CityExist(string city)
 {
-    for (int i = 0; i < cityList.size(); i++)
+    for (int i = 0; i < totalCity; i++)
     {
         if (cityList[i].code == city)
             return true;

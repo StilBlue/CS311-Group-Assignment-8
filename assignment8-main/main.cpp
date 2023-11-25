@@ -9,7 +9,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "CityGraph.h"
+#include "graph.h"
 
 using namespace std;
 

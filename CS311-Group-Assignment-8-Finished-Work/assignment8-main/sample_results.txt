@@ -1,0 +1,27 @@
+From City: ANAHEIM, population 1273000, elevation 310
+To City: BAKERSFIELD, population 31100, elevation 390
+The shortest distance from ANAHEIM to BAKERSFIELD is 225
+through the route: ANAHEIM->VICTORVILLE->CHINO->GRPVE->ISABELLA->BAKERSFIELD
+
+
+From City: ANAHEIM, population 1273000, elevation 310
+To City: WRIGHTWOOD, population 9234, elevation 7910
+The shortest distance from ANAHEIM to WRIGHTWOOD is 153
+through the route: ANAHEIM->VICTORVILLE->CHINO->GRPVE->WRIGHTWOOD
+
+
+From City: POMONA, population 698300, elevation 298
+To City: IRWIN, population 4120, elevation 932
+The shortest distance from POMONA to IRWIN is 346
+through the route: POMONA->EDWIN->ANAHEIM->VICTORVILLE->CHINO->GRPVE->IRWIN
+
+
+From City: BAKERSFIELD, population 31100, elevation 390
+To City: BREA, population 529000, elevation 1242
+The shortest distance from BAKERSFIELD to BREA is 143
+through the route: BAKERSFIELD->VINING->BOSSTOWN->GRPVE->ISABELLA->BREA
+
+
+From City: WRIGHTWOOD, population 9234, elevation 7910
+To City: VICTORVILLE, population 57460, elevation 2190
+No route from WRIGHTWOOD to VICTORVILLE
